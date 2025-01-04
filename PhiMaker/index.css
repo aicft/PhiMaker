@@ -3,29 +3,28 @@
     margin: 0px;
     padding: 2px;
     overflow: hidden;
-    background-color: #1b1b1b;
     font-size: 13px;
     text-align: center;
+    background-color: #1b1b1b;
 
 }
+
 #icon {
-    margin: px;
     float: left;
 }
 
-
-li.nav {
+.dropbtn {
     display: block;
     text-align: center;
-    
+    margin: 6px;
     text-decoration: none;
     float: left;
 }
 
 /*鼠标移动到选项上修改背景颜色 */
-#nav li.nav:hover {
+#nav .dropbtn:hover {
     background-color: #292929;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 body {
@@ -36,43 +35,130 @@ body {
 
 /*按钮（菜单栏）*/
 
-
+/* 下拉按钮样式 */
 .dropbtn {
-    background-color: #ffffff00;
+    background-color: #1b1b1b;
     color: white;
     border: none;
     cursor: pointer;
-    padding: 6px 12px;
+    padding: 0.13%;
+    border-radius: 6px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
+/* 下拉内容 (默认隐藏) */
+.dropdown-c1 {
     display: none;
     position: absolute;
+    top: 4.8%;
+    left: 1.6%;
     background-color: #1b1b1b;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width: 100px;
+    box-shadow: none;
+    margin: 0px;
+    border-radius: 6px;
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+.dropdown-c2 {
+    display: none;
+    position: absolute;
+    top: 4.8%;
+    left: 6.5%;
+    background-color: #1b1b1b;
+    min-width: 100px;
+    box-shadow: none;
+    margin: 0px;
+    border-radius: 6px;
+}
+
+.dropdown-c3 {
+    display: none;
+    position: absolute;
+    top: 4.8%;
+    left: 11%;
+    background-color: #1b1b1b;
+    min-width: 100px;
+    box-shadow: none;
+    margin: 0px;
+    border-radius: 6px;
+}
+
+.dropdown-c4 {
+    display: none;
+    position: absolute;
+    top: 4.8%;
+    left: 15.8%;
+    background-color: #1b1b1b;
+    min-width: 100px;
+    box-shadow: none;
+    margin: 0px;
+    border-radius: 6px;
+}
+
+.dropdown-c5 {
+    display: none;
+    position: absolute;
+    top: 4.8%;
+    left: 20%;
+    background-color: #1b1b1b;
+    min-width: 100px;
+    box-shadow: none;
+    border-radius: 6px;
+    margin: 0px;
+
+}
+
+/* 下拉菜单的链接 */
+.dropdown-c1 a,
+.dropdown-c2 a,
+.dropdown-c3 a,
+.dropdown-c4 a,
+.dropdown-c5 a {
+    color: rgb(255, 255, 255);
+    padding: 0px 0px;
     text-decoration: none;
     display: block;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+
+
 }
 
-.dropdown-content a:hover {
-    background-color: #1b1b1b;
+.dropdown-c1 a p.menu_1,
+.dropdown-c2 a p.menu_1,
+.dropdown-c3 a p.menu_1,
+.dropdown-c4 a p.menu_1,
+.dropdown-c5 a p.menu_1 {
+    padding: 5px 5px;
+    margin: 1px;
+    text-align: left;
+
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-c1 a :hover,
+.dropdown-c2 a :hover,
+.dropdown-c3 a :hover,
+.dropdown-c4 a :hover,
+.dropdown-c5 a :hover {
+    background-color: #292929;
+    /*
+    margin: 15px;*/
+    border-radius: 6px;
+}
+
+/* 在鼠标移上去后显示下拉菜单 */
+.dropdown:hover .dropdown-c1,
+.dropdown:hover .dropdown-c2,
+.dropdown:hover .dropdown-c3,
+.dropdown:hover .dropdown-c4,
+.dropdown:hover .dropdown-c5 {
     display: block;
 }
-/*
-.dropdown:hover .dropbtn {
-    background-color: #1774df;
-}*/
+
+#search {
+    text-decoration: none;
+    padding: 7px 500px;
+}
+
+/*----------------------------------------------------------------------*/

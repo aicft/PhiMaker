@@ -28,7 +28,7 @@
 }
 
 body {
-    background-color: #533131;
+    background-color: #2e2c47;
     margin: 0px
 }
 
@@ -43,6 +43,9 @@ body {
     cursor: pointer;
     padding: 0.13%;
     border-radius: 6px;
+    width: 50px;
+    height: 25px;
+    margin: 3px;
 }
 
 /* 下拉内容 (默认隐藏) */
@@ -86,7 +89,7 @@ body {
     display: none;
     position: absolute;
     top: 4.8%;
-    left: 15.8%;
+    left: 14.8%;
     background-color: #1b1b1b;
     min-width: 100px;
     box-shadow: none;
@@ -98,7 +101,7 @@ body {
     display: none;
     position: absolute;
     top: 4.8%;
-    left: 20%;
+    left: 19%;
     background-color: #1b1b1b;
     min-width: 100px;
     box-shadow: none;
@@ -156,9 +159,22 @@ body {
     display: block;
 }
 
-#search {
-    text-decoration: none;
-    padding: 7px 500px;
+input {
+    background-color: #272626;
+    color: #b6b6b6;
+    margin: 5px;
+    width: 400px;
+    height: 20px;
+    float: center;
+    margin-left:-360px;
+    outline-style: auto;
+    outline-color:#1f1c1c79;
+    outline-width:thin;
+    border-style:none;
+    outline-offset: 1px;
 }
-
+.ctrlz button{
+    width: 25px;
+    height: 25px;
+}
 /*----------------------------------------------------------------------*/

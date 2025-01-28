@@ -177,4 +177,39 @@ input {
     width: 25px;
     height: 25px;
 }
-/*----------------------------------------------------------------------*/
+
+/*---------------------------------- main window ------------------------------------*/
+
+.subhead{
+    width: 300px;
+    height: 300px;
+    float: right;
+    background-color: #262637;
+    border-left: 2px solid #000000;
+}
+#main_body{
+    width: 300px;
+    height: 468px;
+    float: right;
+    background-color: #5A5A6C;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    border-left: 2px solid #000000;
+}
+
+#sub_left_window{
+    position: fixed;
+    left:0px;
+    width: 260px;
+    height: 100vh;
+    background-color: #2F2F34;
+    border-right: 2px solid #000000;
+};
+#anime_window{
+    position: fixed;
+    bottom: 0px;
+    left: 260px;
+    width: 300px;
+    height: 806px;
+}

@@ -1,0 +1,36 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    // 常见导致 launch.json 报错的原因及解决办法：
+    // 1) "type" 值无效：
+    //    - 旧示例中可能使用 "msedge"；如果报错 "Unknown debug type 'msedge'"，请改为 "pwa-msedge"（或 "pwa-chrome"）。
+    //    - 或者安装对应的调试扩展（Edge/Chrome Debugger）。
+    // 2) "request" 值：
+    //    - 可为 "launch"（启动新进程）或 "attach"（附加到已运行的浏览器）。
+    //    - 使用 "attach" 时通常需要指定 "port" 或 "webSocketDebuggerUrl"。
+    // 3) 路径转义：
+    //    - Windows 路径需转义反斜杠（例如 "c:\\path\\to\\file"）或使用正斜杠。
+    // 4) 版本/权限问题：
+    //    - 确保 VS Code 与调试扩展是最新，防火墙或其它安全软件未阻止调试端口。
+    // 示例修改（推荐）：将 type 改为 pwa-msedge
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            // 若使用内置现代调试器，请使用 "pwa-msedge"
+            //"type": "pwa-msedge",
+            // request 可以是 "launch"（启动浏览器）或 "attach"（附加到已运行的浏览器）
+            "request": "launch",
+            "name": "Open index.html (Edge)",
+            "file": "c:\\Users\\aic_c\\Desktop\\phimaker\\PhiMaker\\PhiMaker\\index.html"
+        }
+        // 如果你必须使用旧的 "msedge"（某些扩展例子），也可以保留原配置并确保已安装对应扩展：
+        // {
+        //     "type": "msedge",
+        //     "request": "launch",
+        //     "name": "Open index.html (msedge extension)",
+        //     "file": "c:\\Users\\aic_c\\Desktop\\phimaker\\PhiMaker\\PhiMaker\\index.html"
+        // }
+    ]
+}

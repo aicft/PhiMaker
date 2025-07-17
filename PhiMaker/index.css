@@ -160,7 +160,7 @@ a {
 }
 
 .searchbox{
-    display: block;
+    display: none;
     height: 400px;
     width: 430px;
     background-color: #727594;

@@ -1,215 +1,174 @@
-#nav ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 2px;
-    overflow: hidden;
-    font-size: 13px;
-    text-align: center;
-    background-color: #1b1b1b;
+/* index.css */
+/* index.css */
+body {
+    margin: 0;
+    background-color: #2e2c47;
+    font-family: "微软雅黑", Arial, "Microsoft Yahei", sans-serif;
+}
 
+#nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 15px;
+    background-color: #1b1b1b;
+    display: flex;
+    align-items: center;
+    height: 37px;
+    gap: 8px;
 }
 
 #icon {
-    float: left;
-}
-
-.dropbtn {
-    display: block;
-    text-align: center;
-    margin: 6px;
-    text-decoration: none;
-    float: left;
-}
-
-/*鼠标移动到选项上修改背景颜色 */
-#nav .dropbtn:hover {
-    background-color: #292929;
-    border-radius: 6px;
-}
-
-body {
-    background-color: #2e2c47;
-    margin: 0px
-}
-
-
-/*按钮（菜单栏）*/
-
-/* 下拉按钮样式 */
-.dropbtn {
-    background-color: #1b1b1b;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 0.13%;
-    border-radius: 6px;
-    width: 50px;
-    height: 25px;
-    margin: 3px;
-}
-
-/* 下拉内容 (默认隐藏) */
-.dropdown-c1 {
-    display: none;
-    position: absolute;
-    top: 4.8%;
-    left: 1.6%;
-    background-color: #1b1b1b;
-    min-width: 100px;
-    box-shadow: none;
-    margin: 0px;
-    border-radius: 6px;
-}
-
-.dropdown-c2 {
-    display: none;
-    position: absolute;
-    top: 4.8%;
-    left: 6.5%;
-    background-color: #1b1b1b;
-    min-width: 100px;
-    box-shadow: none;
-    margin: 0px;
-    border-radius: 6px;
-}
-
-.dropdown-c3 {
-    display: none;
-    position: absolute;
-    top: 4.8%;
-    left: 11%;
-    background-color: #1b1b1b;
-    min-width: 100px;
-    box-shadow: none;
-    margin: 0px;
-    border-radius: 6px;
-}
-
-.dropdown-c4 {
-    display: none;
-    position: absolute;
-    top: 4.8%;
-    left: 14.8%;
-    background-color: #1b1b1b;
-    min-width: 100px;
-    box-shadow: none;
-    margin: 0px;
-    border-radius: 6px;
-}
-
-.dropdown-c5 {
-    display: none;
-    position: absolute;
-    top: 4.8%;
-    left: 19%;
-    background-color: #1b1b1b;
-    min-width: 100px;
-    box-shadow: none;
-    border-radius: 6px;
-    margin: 0px;
-
-}
-
-/* 下拉菜单的链接 */
-.dropdown-c1 a,
-.dropdown-c2 a,
-.dropdown-c3 a,
-.dropdown-c4 a,
-.dropdown-c5 a {
-    color: rgb(255, 255, 255);
-    padding: 0px 0px;
-    text-decoration: none;
-    display: block;
-    margin-right: 5px;
     margin-left: 5px;
-    margin-bottom: 5px;
-    text-align: left;
-
-
 }
 
-.dropdown-c1 a p.menu_1,
-.dropdown-c2 a p.menu_1,
-.dropdown-c3 a p.menu_1,
-.dropdown-c4 a p.menu_1,
-.dropdown-c5 a p.menu_1 {
-    padding: 5px 5px;
-    margin: 1px;
-    text-align: left;
-
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.dropdown-c1 a :hover,
-.dropdown-c2 a :hover,
-.dropdown-c3 a :hover,
-.dropdown-c4 a :hover,
-.dropdown-c5 a :hover {
+.dropbtn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    padding: 0 8px;
+    height: 100%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.dropbtn:hover {
     background-color: #292929;
-    /*
-    margin: 15px;*/
-    border-radius: 6px;
 }
 
-/* 在鼠标移上去后显示下拉菜单 */
-.dropdown:hover .dropdown-c1,
-.dropdown:hover .dropdown-c2,
-.dropdown:hover .dropdown-c3,
-.dropdown:hover .dropdown-c4,
-.dropdown:hover .dropdown-c5 {
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1b1b1b;
+    min-width: 160px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    z-index: 1000;
+    padding: 6px 0;
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
-input {
-    background-color: #272626;
-    color: #b6b6b6;
-    margin: 5px;
-    width: 400px;
-    height: 20px;
-    float: center;
-    margin-left:-360px;
-    outline-style: auto;
-    outline-color:#1f1c1c79;
-    outline-width:thin;
-    border-style:none;
-    outline-offset: 1px;
+.menu ,.menu_b {
+    margin: 2px 5px;
+    padding: 8px 10px;
+    color: #e0e0e0;
+    white-space: nowrap;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: background 0.15s ease;
 }
-.ctrlz button{
-    width: 25px;
-    height: 25px;
+.menu_b{
+    position: right
+}
+.menu:hover {
+    background-color: #292929;
 }
 
-/*---------------------------------- main window ------------------------------------*/
-
-.subhead{
-    width: 300px;
-    height: 300px;
-    float: right;
-    background-color: #262637;
-    border-left: 2px solid #000000;
-}
-#main_body{
-    width: 300px;
-    height: 468px;
-    float: right;
-    background-color: #5A5A6C;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    border-left: 2px solid #000000;
+.divider {
+    height: 1px;
+    background-color: #3a3a3a;
+    margin: 3px 8px;
+    border-radius: 2px;
 }
 
-#sub_left_window{
-    position: fixed;
-    left:0px;
-    width: 260px;
-    height: 100vh;
-    background-color: #2F2F34;
-    border-right: 2px solid #000000;
-};
-#anime_window{
-    position: fixed;
-    bottom: 0px;
-    left: 260px;
-    width: 300px;
-    height: 806px;
+.ctrlz {
+    margin-left: auto;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    padding: 0 10px;
+    cursor: pointer;
+    height: 100%;
+    transition: background 0.2s ease;
+}
+
+.ctrl-btn:hover {
+    background-color: #292929;
+}
+
+.search-box {
+    margin: 0 1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+#search {
+    margin:2px;
+    background: #292929;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    padding: 6px 12px;
+    color: #e0e0e0;
+    width: 180px;
+    font-size: 13px;
+    transition: border-color 0.2s ease;
+    text-align: left;
+    width:400px;
+}
+
+#search:focus {
+    outline: none;
+    border-color: #555;
+    box-shadow: 0 0 0 2px rgba(85,85,85,0.2);
+}
+
+.subbody {
+    background-color: #838490
+}
+
+/* 取消链接点击后的样式 */
+a {
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+}
+
+/* 取消链接默认的点击状态样式 */
+a{
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+}
+
+/* 取消链接默认的悬停状态样式 */
+a{
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+}
+
+/* 取消链接默认的焦点状态样式 */
+a {
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+    outline: none; /* 移除默认的焦点边框 */
+}
+
+.searchbox{
+    display: block;
+    height: 400px;
+    width: 430px;
+    background-color: #727594;
+    border-radius: 10px;
+    box-sizing: border-box;
+    gap: 10000;
+}
+#search:before .searchbox{
+    display: block;
+    
 }

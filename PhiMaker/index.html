@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ch">
+
 <head>
     <meta charset="utf-8">
     <title>PhiMaker</title>
@@ -8,7 +9,8 @@
     <meta name="author" content="Akua">
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="https://unpkg.com/konva@4.0.0/konva.min.js"></script>
-    <script src='index.js'></script>
+    <script src='PhiMaker/Strange.js'></script>
+
 <body>
     <div id="nav">
         <ul>
@@ -18,68 +20,117 @@
             <li class="dropdown">
                 <button class="dropbtn">文件(F)</button>
                 <div class="dropdown-content">
-                    <a href="#"><p class="menu">新建文件</p></a>
-                    <a href="#"><p class="menu">打开文件...</p></a>
+                    <a href="#">
+                        <p class="menu">新建文件</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">打开文件...</p>
+                    </a>
                     <div class="divider"></div>
-                    <a href="#"><p class="menu">导入文件...</p></a>
-                    <a href="#"><p class="menu">导出文件</p></a>
+                    <a href="#">
+                        <p class="menu">导入文件...</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">导出文件</p>
+                    </a>
                     <div class="divider"></div>
-                    <a href="#"><p class="menu">保存</p></a>
-                    <a href="#"><p class="menu">另存为...</p></a>
-                    <a href="#"><p class="menu">自动保存</p></a>
+                    <a href="#">
+                        <p class="menu">保存</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">另存为...</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">自动保存</p>
+                    </a>
                     <div class="divider"></div>
-                    <a href="#"><p class="menu">设置</p></a>
+                    <a href="#">
+                        <p class="menu">设置</p>
+                    </a>
                     <div class="divider"></div>
-                    <a href="#"><p class="menu">关闭编辑器</p></a>
+                    <a href="#">
+                        <p class="menu">关闭编辑器</p>
+                    </a>
                 </div>
             </li>
             <li class="dropdown">
                 <button class="dropbtn">编辑(E)</button>
                 <div class="dropdown-content">
-                    <a href="#"><p class="menu">撤消</p></a>
-                    <a href="#"><p class="menu">恢复</p></a>
-                    <a href="#"><p class="menu">剪切</p></a>
-                    <a href="#"><p class="menu">复制</p></a>
-                    <a href="#"><p class="menu">粘贴</p></a>
+                    <a href="#">
+                        <p class="menu">撤消</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">恢复</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">剪切</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">复制</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">粘贴</p>
+                    </a>
                 </div>
             </li>
             <li class="dropdown">
                 <button class="dropbtn">查看(V)</button>
                 <div class="dropdown-content">
-                    <a href="#"><p class="menu">开发视图</p></a>
-                    <a href="#"><p class="menu">游玩视图</p></a>
-                    <a href="#"><p class="menu">资源管理</p></a>
-                    <a href="#"><p class="menu">输出</p></a>
+                    <a href="#">
+                        <p class="menu">开发视图</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">游玩视图</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">资源管理</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">输出</p>
+                    </a>
                 </div>
             </li>
             <li class="dropdown">
                 <button class="dropbtn">运行(R)</button>
                 <div class="dropdown-content">
-                    <a href="#"><p class="menu">预览</p></a>
-                    <a href="#"><p class="menu">游玩</p></a>
-                    <a href="#"><p class="menu">配置</p></a>
+                    <a href="#">
+                        <p class="menu">预览</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">游玩</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">配置</p>
+                    </a>
                 </div>
             </li>
             <li class="dropdown">
                 <button class="dropbtn">帮助(H)</button>
                 <div class="dropdown-content">
-                    <a href="#"><p class="menu">欢迎</p></a>
-                    <a href="#"><p class="menu">文档</p></a>
-                    <a href="#"><p class="menu">发布说明</p></a>
-                    <a href="#"><p class="menu">关于</p></a>
+                    <a href="#">
+                        <p class="menu">欢迎</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">文档</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">发布说明</p>
+                    </a>
+                    <a href="#">
+                        <p class="menu">关于</p>
+                    </a>
                 </div>
             </li>
             <li class="search-box">
                 <input id="search" type="text" placeholder="搜索铺面内容...">
-                 <div class="searchbox">
-                     <h1>
-                         <!--Tab to edit-->
-                         hhh
-                     </h1>
-     searchtext
- </div>
+                <div class="searchbox">
+                    <h1>
+                        hhh
+                    </h1>
+                    searchtext
+                </div>
             </li>
-               
+
         </ul>
     </div>
 
@@ -87,4 +138,5 @@
         class
     </div>
 </body>
+
 </html>

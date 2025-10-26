@@ -1,174 +1,74 @@
-/* index.css */
-/* index.css */
+:root {
+    --bg-color: rgb(32, 23, 54);
+    --text-color: #e6e9ff;
+    --accent-color: #986cff;
+    --top-menu-color: rgb(10, 10, 10)
+}
+
 body {
-    margin: 0;
-    background-color: #2e2c47;
+    background-color: var(--bg-color);
+    /* 使用变量 */
+    color: var(--text-color);
     font-family: "微软雅黑", Arial, "Microsoft Yahei", sans-serif;
+    margin: 0px;
 }
-
-#nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0 15px;
-    background-color: #1b1b1b;
+/*-------------topmenu------------------*/
+ul,li{
     display: flex;
-    align-items: center;
-    height: 37px;
-    gap: 8px;
-}
-
-#icon {
-    margin-left: 5px;
-}
-
-.dropdown {
-    position: relative;
-    height: 100%;
-    display: flex;
+    margin: 0px;
+    padding: 0px;
     align-items: center;
 }
-
-.dropbtn {
-    background: none;
-    border: none;
-    color: #e0e0e0;
-    padding: 0 8px;
-    height: 100%;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    font-size: 14px;
-    border-radius: 2px;
+.top-menu{
+    background-color: rgb(3, 26, 46);
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.25);
 }
-
-.dropbtn:hover {
-    background-color: #292929;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #1b1b1b;
-    min-width: 160px;
-    border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    z-index: 1000;
-    padding: 6px 0;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.menu ,.menu_b {
-    margin: 2px 5px;
-    padding: 8px 10px;
-    color: #e0e0e0;
-    white-space: nowrap;
-    font-size: 13px;
+.menu-button {
+    background-color: rgb(18, 21, 59);
     border-radius: 4px;
-    transition: background 0.15s ease;
+    /*border: none;
+    all: unset;.menu-button-f:focus{
+    background-color:black
+}*/
+    list-style: none;
 }
-.menu_b{
-    position: right
-}
-.menu:hover {
-    background-color: #292929;
-}
-
-.divider {
-    height: 1px;
-    background-color: #3a3a3a;
-    margin: 3px 8px;
-    border-radius: 2px;
-}
-
-.ctrlz {
-    margin-left: auto;
-}
-
-.ctrl-btn {
-    background: none;
+.menu-button-f{
+    background-color: rgb(18, 21, 59);
+    border-radius: 4px;
     border: none;
-    color: #e0e0e0;
-    padding: 0 10px;
-    cursor: pointer;
-    height: 100%;
-    transition: background 0.2s ease;
+    color: #e6e9ff;
+    justify-content: flex-start;
+    align-items:center;
+    padding: 4px;
+    margin: 2px;
 }
-
-.ctrl-btn:hover {
-    background-color: #292929;
+.menu-button-f:focus{
+    background-color:black
 }
-
-.search-box {
-    margin: 0 1px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
+.menu-button-f:hover{
+    background-color:rgb(73, 61, 61)
 }
-
-#search {
-    margin:2px;
-    background: #292929;
-    border: 1px solid #3a3a3a;
-    border-radius: 5px;
-    padding: 6px 12px;
-    color: #e0e0e0;
-    width: 180px;
-    font-size: 13px;
-    transition: border-color 0.2s ease;
-    text-align: left;
-    width:400px;
+.icon {
+    width:30px;
+    height: 30px;
+    padding: 1px;
+    border-radius: 20px;
 }
-
-#search:focus {
-    outline: none;
-    border-color: #555;
-    box-shadow: 0 0 0 2px rgba(85,85,85,0.2);
-}
-
-.subbody {
-    background-color: #838490
-}
-
-/* 取消链接点击后的样式 */
-a {
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: none; /* 移除下划线 */
-}
-
-/* 取消链接默认的点击状态样式 */
-a{
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: none; /* 移除下划线 */
-}
-
-/* 取消链接默认的悬停状态样式 */
-a{
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: none; /* 移除下划线 */
-}
-
-/* 取消链接默认的焦点状态样式 */
-a {
-    color: inherit; /* 继承父元素的颜色 */
-    text-decoration: none; /* 移除下划线 */
-    outline: none; /* 移除默认的焦点边框 */
-}
-
-.searchbox{
+.menu-botton-down-c{
     display: none;
-    height: 400px;
-    width: 430px;
-    background-color: #727594;
-    border-radius: 10px;
-    box-sizing: border-box;
-    gap: 10000;
 }
-#search:before .searchbox{
-    display: block;
-    
+/*----------------down right menu------------------*/
+
+.rightmenu{
+    background-color: aqua;
+    width: 20%;
+}
+.down{
+    float:left
+
+}
+.mainwindow{
+    background-color:black;
+    width:80%;
+    height: 94.6vh;
 }

@@ -9,20 +9,90 @@
 </head>
 
 <body>
-    
-        <h2>新建铺面</h2>
-        <form id="create-project-form">
-            <label for="project-name">铺面名称:</label>
-            <input type="text" id="project-name" name="project-name" required>
-            <br>
-            <label for="project-type">Project Type:</label>
-            <select id="project-type" name="project-type">
-                <option value="phigros">Phigros</option>
-                <option value="phira">Phira</option>
-            </select>
+    <!-- 页面标题 -->
+    <h2>新建铺面</h2>
 
-            <button type="submit">Create Project</button>
+    <!-- 表单外壳（用于布局） -->
+    <div class="create">
+        <!-- 新建项目表单：用户在此填写铺面信息 -->
+        <form id="create-project-form">
+            <!-- 链接到项目名输入框 -->
+            <label for="project-name">铺面名称:</label>
+            <input type="text" id="project-name" name="project-name" required placeholder="例如：MyMap" aria-label="铺面名称">
+
+            <!-- 难度：显示为数字输入框 + 滑条（互相同步） -->
+            <label for="project-difficulty-number">难度 (数值):</label>
+            <div class="number-range-row">
+                <!-- 数字框（可直接输入精确数值） -->
+                <input type="number" id="project-difficulty-number" name="project-difficulty" min="0" max="20" value="8"
+                    title="请输入铺面难度（数字，0-20）" placeholder="0-20" aria-label="铺面难度数字">
+                <!-- 滑条：用于快速调整难度 -->
+                <input type="range" id="project-difficulty-range" min="0" max="20" value="8" aria-label="铺面难度滑条">
+            </div>
+
+            <!-- 难度等级（文本） -->
+            <label for="project-diffculty-level">难度等级:</label>
+            <input type="text" id="project-diffculty-level" name="project-difficulty-level" required
+                title="请输入铺面难度等级（如 Easy / Normal / Hard 等）" placeholder="例如：Hard" aria-label="铺面难度等级">
+
+            <!-- 作者信息（文本输入） -->
+            <label for="project-author">作者:</label>
+            <input type="text" id="project-author" title="默认为 'UK'" name="project-author" placeholder="你自己, 默认为 'UK'" required aria-label="作者">
+
+            <!-- 音乐作者 -->
+            <label for="project-music-author">音乐作者:</label>
+            <input type="text" id="project-music-author" title="默认为 'UK'" name="project-music-author" placeholder="音乐作者, 默认为 'UK'" required aria-label="音乐作者">
+
+            <!-- 插图作者 -->
+            <label for="project-picture-author">插图作者:</label>
+            <input type="text" id="project-picture-author" title="默认为 'UK'" name="project-picture-author" placeholder="插图作者, 默认为 'UK'" aria-label="插图作者" required>
+
+            <!-- tip 文本 -->
+            <label for="project-tip">Tip:</label>
+            <input type="text" id="project-tip" placeholder="Tip: 不写的话会给你塞一条别的" name="project-tip" required aria-label="提示">
+
+            <!-- 提交按钮：右对齐（由 CSS 控制） -->
+            <button type="submit" id="create-submit">Create Project</button>
         </form>
+    </div>
+    
+    <!-- 页面脚本：同步滑条与数字，并处理表单提交 -->
+    <script>
+        // 表单提交处理（目前保留弹窗提醒行为）
+        document.getElementById('create-project-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const projectName = document.getElementById('project-name').value;
+            const difficulty = document.getElementById('project-difficulty-number').value;
+            const difficultyLevel = document.getElementById('project-diffculty-level').value;
+            const author = document.getElementById('project-author').value;
+            // 目前仅展示信息，后续可以 postMessage 到父窗口或保存到后端
+            alert(`Creating project: ${projectName}\n难度: ${difficulty} (${difficultyLevel})\n作者: ${author}`);
+        });
+
+        // 同步逻辑：数字输入与滑条互相同步
+        (function(){
+            const numInput = document.getElementById('project-difficulty-number');
+            const rangeInput = document.getElementById('project-difficulty-range');
+            if (!numInput || !rangeInput) return;
+
+            // 滑条变化 -> 更新数字框
+            rangeInput.addEventListener('input', function(e){
+                numInput.value = e.target.value;
+            });
+
+            // 数字框变化 -> 更新滑条（并约束在范围内）
+            numInput.addEventListener('input', function(e){
+                let v = parseInt(e.target.value, 10);
+                if (isNaN(v)) v = 0;
+                const min = parseInt(rangeInput.min, 10) || 0;
+                const max = parseInt(rangeInput.max, 10) || 100;
+                if (v < min) v = min;
+                if (v > max) v = max;
+                rangeInput.value = v;
+                e.target.value = v;
+            });
+        })();
+    </script>
 </body>
 
 </html>

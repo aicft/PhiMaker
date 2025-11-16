@@ -1,4 +1,98 @@
 body{
-    color: #e6e9ff;
-   margin: 70px;
+    color: #ffffff;
+    margin: 40px;
 }
+/* 表单卡片容器 */
+#create-project-form {
+    width: 100%;
+    max-width: 720px; /* 更宽以承载更长输入框 */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 22px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* 增大元素间距 */
+    font-size: 16px; /* 整体放大文字 */
+}
+label {
+    font-size: 15px;
+    color:#ffffff;
+    display: block;
+    margin-bottom: 6px;
+}
+input[type="text"], input[type="number"], select, textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    padding: 14px 16px; /* 更高更宽的输入框 */
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.015); /* 更贴合父页面的深色风格 */
+    color: var(--text);
+    box-sizing: border-box;
+    font-size: 16px;
+    min-height: 48px;
+}
+textarea { min-height: 120px; resize: vertical; }
+button[type="submit"] {
+    background: linear-gradient(180deg, var(--accent), #7a4cff);
+    color: #ffffff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.55);
+    align-self: flex-end; /* 将按钮放到右侧 */
+    min-width: 160px;
+    font-size: 15px;
+}
+button[type="submit"]:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+/* 数字 + 滑条 组合布局 */
+.number-range-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 数字框固定宽度以便与滑条并列 */
+.number-range-row input[type="number"] {
+    width: 110px;
+    min-width: 90px;
+}
+
+/* 滑条样式（现代浏览器） */
+.number-range-row input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    flex: 1 1 auto;
+    background: linear-gradient(90deg, rgba(152,108,255,0.6), rgba(152,108,255,0.25));
+    border-radius: 6px;
+}
+
+.number-range-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.number-range-row input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+/* end of create.html specific styles */

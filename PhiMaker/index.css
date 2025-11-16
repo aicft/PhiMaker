@@ -1,7 +1,7 @@
 :root{
     /* 颜色变量：深色背景 + 紫色强调 */
     --bg-color: #0b0f1a;    /* 页面主背景 */
-    --main-c: #2d1b4a;      /* 顶部条背景（深紫） */
+    --main-c: #332663;      /* 顶部条背景（深紫） */
     --accent: #986cff;      /* 强调色 */
     --text: #e6e9ff;        /* 主文字色 */
     --muted: #bfbff3;       /* 次要文字 */
@@ -16,15 +16,13 @@ body {
 }
 
 /*-------------top menu------------------*/
-/* 将 ul 作为水平容器，li 不再被同时设为 flex（避免意外影响子元素） */
-ul {
-    display: flex;
-    margin: 0px;
-    padding: 0px;
-    align-items: center;
-}
-
+/* 顶部菜单：限定到 .top-menu，避免影响页面中其它的 ul 元素 */
 .top-menu {
+    display: flex;      /* 水平排列子项（logo + 菜单按钮） */
+    gap: 8px;           /* 菜单项间距 */
+    margin: 0;
+    padding: 1px 12px;  /* 顶部内边距 */
+    align-items: center; /* 垂直居中 */
     background-color: var(--main-c);
     box-shadow: 0px 0px 7px rgba(97, 97, 97, 0.452);
     z-index: 1000000;
@@ -39,7 +37,6 @@ ul {
     /*background-color: #99CCFF;*/
     border-radius: 4px;
     border: none;
-    all: unset;
     list-style: none;
     /* 取消不必要的 max-width，避免子元素被截断 */
     max-width: none;
@@ -62,29 +59,40 @@ ul {
 .menu-button-f:hover {
     background: rgba(255,255,255,0.03);
 }
+/*
 .icon {
     width: 30px;
     height: 30px;
     padding: 1px;
     border-radius: 20px;
 }
+*/
+/* content 布局：主内容（flex）和右侧菜单 */
+.content{
+    display: flex;
+    align-items: stretch;
+}
+
+.down{ /* 删除 float 布局，使用 flex 管理 */
+    float: none;
+}
 
 .menu-botton-down-c {
     /* 下拉面板：默认隐藏（不可见、不可交互），使用透明度/变换过渡以获得动画 */
     display: flex;             /* 保持 flex 布局，配合 opacity/visibility 控制显示 */
-    position: absolute;        /* 绝对定位显示为下拉面板 */
-    top: calc(100% + 6px);     /* 位于菜单按钮下方（留 6px 间隙） */
+    position: absolute;       /* 绝对定位，使面板浮在按钮下方 */
     left: 50%;
     transform: translateX(-50%) translateY(-6px); /* 初始上移，便于过渡动画 */
     min-width: 140px;          /* 保持合理宽度 */
     flex-direction: column;    /* 垂直堆叠下拉项 */
+    top: calc(100% + 2px);     /* 位于菜单按钮下方（留 6px 间隙） */
     align-items: center;       /* 水平居中 */
     justify-content: center;   /* 垂直居中（如果容器有高度） */
-    gap: 6px;                  /* 下拉项之间的间距 */
+    gap: 4px;                  /* 下拉项之间的间距 */
     padding: 6px 8px;          /* 内边距，避免靠边 */
     box-sizing: border-box;
     background-color: rgba(8, 8, 12, 0.96); /* 半透明暗色背景，和主题协调 */
-    color: var(--main-t-c);
+    color: var(--text);
     border-radius: 6px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.45);
     z-index: 10000;
@@ -108,7 +116,7 @@ ul {
 /* 下拉内按钮样式（可覆盖默认 button） */
 .menu-botton-down-c .menu-button-c {
     background: transparent;
-    color: var(--main-t-c);
+    color: var(--text);
     border: none;
     padding: 6px 10px;
     width: 100%;
@@ -128,15 +136,94 @@ ul {
 
 .rightmenu {
     background-color: rgb(30, 20, 32);
-    width: 20%;
-}
-
-.down {
-    float: left;
+    /* 在 flex 布局中，右侧栏使用固定宽度或最小宽度 */
+    flex: 0 0 280px; /* 固定宽度（可根据需要调整） */
+    min-width: 220px;
 }
 
 .mainwindow {
-    background-color: #6699CC;
-    width: 80%;
+    background-color: #1e293b; /* 深色主区，与主题协调 */
+    flex: 1 1 auto;            /* 占据除右侧栏外的剩余空间 */
     height: 94.6vh;
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+/* 全屏与响应式适配 -------------------------------------------------- */
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+/* 把 body 做成列方向的 flex 容器：顶部固定，内容填满余下高度 */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 顶部栏高度变量，便于调整 */
+:root {
+    --top-height: 32px;
+}
+
+.top-menu {
+    height: var(--top-height);
+}
+
+/* 让 content 占据剩余高度并处理内部溢出 */
+.content {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden; /* 防止内部溢出影响整体布局 */
+}
+
+.mainwindow {
+    flex: 1 1 auto;
+    min-width: 0; /* 允许在 flex 中正确收缩 */
+    overflow: auto; /* 主区有滚动时单独滚动 */
+}
+
+.rightmenu {
+    flex: 0 0 280px; /* 固定侧边宽度 */
+    min-width: 220px;
+    overflow: auto;
+}
+
+/* 让 iframe 或主区子元素占满高度（如果存在 iframe） */
+.mainwindow iframe,
+.mainwindow > * {
+    width: 100%;
+    height: 100%;
+}
+
+/* 响应式：窄屏时把侧栏放到主内容下面，垂直排列 */
+@media (max-width: 880px) {
+    :root { --top-height: 64px; }
+    .content {
+        flex-direction: column;
+        gap: 0;
+    }
+    .rightmenu {
+        flex: 0 0 auto;
+        width: 100%;
+        min-width: 0;
+        order: 2;
+    }
+    .mainwindow {
+        order: 1;
+        height: auto;
+        min-height: 300px;
+    }
+    /* 顶部菜单在移动端内边距更大以便触控 */
+    .top-menu {
+        padding: 10px 14px;
+    }
+}
+
+/* 更小屏幕：进一步压缩侧边或隐藏（可选） */
+@media (max-width: 480px) {
+    .rightmenu {
+        display: none; /* 若需更好的移动体验，可改为抽屉式侧栏 */
+    }
 }

@@ -41,6 +41,7 @@
                 <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">文件(F)</button>
                 <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
                 <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
                     <button class="menu-button-c" type="button">新建</button>
                     <button class="menu-button-c" type="button">打开工作文件</button>
                     <button class="menu-button-c" type="button">导入素材</button>
@@ -50,36 +51,69 @@
             </li>
             <!-- 编辑菜单 -->
             <li class="menu-button">
-                <button class="menu-button-f">编辑(E)</button>
+                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">编辑(E)</button>
+                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
+                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
+                    <button class="menu-button-c" type="button">新建</button>
+                    <button class="menu-button-c" type="button">打开工作文件</button>
+                    <button class="menu-button-c" type="button">导入素材</button>
+                    <button class="menu-button-c" type="button">导出</button>
+                    <button class="menu-button-c" type="button">退出</button>
+                </div>
             </li>
-            <!-- 选择菜单 -->
-            <li class="menu-button">
-                <button class="menu-button-f">选择(S)</button>
+                <li class="menu-button">
+                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">选择(S)</button>
+                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
+                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
+                    <button class="menu-button-c" type="button">新建</button>
+                    <button class="menu-button-c" type="button">打开工作文件</button>
+                    <button class="menu-button-c" type="button">导入素材</button>
+                    <button class="menu-button-c" type="button">导出</button>
+                    <button class="menu-button-c" type="button">退出</button>
+                </div>
             </li>
             <!-- 查看菜单 -->
-            <li class="menu-button">
-                <button class="menu-button-f">查看(V)</button>
+           <li class="menu-button">
+                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">查看(V)</button>
+                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
+                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
+                    <button class="menu-button-c" type="button">新建</button>
+                    <button class="menu-button-c" type="button">打开工作文件</button>
+                    <button class="menu-button-c" type="button">导入素材</button>
+                    <button class="menu-button-c" type="button">导出</button>
+                    <button class="menu-button-c" type="button">退出</button>
+                </div>
             </li>
             <!-- 其他菜单 -->
-            <li class="menu-button">
-                <button class="menu-button-f">其他(O)</button>
+           <li class="menu-button">
+                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">其他(O)</button>
+                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
+                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
+                    <button class="menu-button-c" type="button">新建</button>
+                    <button class="menu-button-c" type="button">打开工作文件</button>
+                    <button class="menu-button-c" type="button">导入素材</button>
+                    <button class="menu-button-c" type="button">导出</button>
+                    <button class="menu-button-c" type="button">退出</button>
+                </div>
             </li>
         </ul>
     </div>
-    <!-- 主窗口区域，左侧主内容 -->
-    <div class="down mainwindow">
-        <!-- 主内容iframe，可用于加载主页面内容 -->
-        <iframe title="Main content"></iframe>
-    </div>
-    <!-- 右侧菜单区域 -->
-    <div class="down rightmenu">
-        <!-- 右侧顶部菜单（可扩展） -->
-        <div class="r-top-menu">
-            <!-- 预留区域 -->
         </div>
-        <!-- 右侧底部菜单（可扩展） -->
-        <div class="r-down-menu">
-            <!-- 预留区域 -->
+        <!-- 右侧菜单区域 -->
+        <div class="down rightmenu">
+            <!-- 右侧顶部菜单（可扩展） 
+            <div class="r-top-menu">
+                 预留区域 
+            </div>
+        -->
+            <!-- 右侧底部菜单（可扩展） -->
+            <div class="r-down-menu">
+                <!-- 预留区域 -->
+            </div>
         </div>
     </div>
 </body>

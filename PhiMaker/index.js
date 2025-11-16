@@ -1,11 +1,12 @@
 console.clear();
 console.log("index.js loaded");
 
-// Ensure DOM is ready before binding menu handlers — fixes issue where script loaded in <head>
+// 入口：在 DOMContentLoaded 后绑定菜单交互逻辑，保证元素存在
 document.addEventListener('DOMContentLoaded', () => {
-	// 下拉菜单交互：点击切换、点击外部关闭、Esc 关闭
+	// 收集所有顶级菜单的 <li.menu-button>
 	const menuButtons = Array.from(document.querySelectorAll('.menu-button'));
 
+	// closeAll: 关闭所有已打开的下拉面板，并同步 aria 状态
 	function closeAll() {
 		menuButtons.forEach(li => {
 			const btn = li.querySelector('.menu-button-f');
@@ -16,14 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// 切换单个菜单
+	// toggleMenu: 切换指定菜单的打开/关闭状态（并关闭其他菜单）
 	function toggleMenu(li) {
 		const btn = li.querySelector('.menu-button-f');
 		const panel = li.querySelector('.menu-botton-down-c');
 		const isOpen = li.classList.toggle('open');
+		// 同步可访问性状态到触发按钮和面板
 		if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 		if (panel) panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-		// 关闭其他
+
+		// 关闭其它菜单，保证一次只能打开一个
 		menuButtons.forEach(other => {
 			if (other !== li) {
 				other.classList.remove('open');
@@ -35,20 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// 绑定按钮点击与键盘
+	// 绑定事件：点击切换、键盘（Enter/Space）触发
 	menuButtons.forEach(li => {
 		const btn = li.querySelector('.menu-button-f');
 		const panel = li.querySelector('.menu-botton-down-c');
-		if (!btn) return;
+		if (!btn) return; // 有些 li 可能只是占位（logo）
 
+		// 点击触发下拉
 		btn.addEventListener('click', (e) => {
-			e.stopPropagation();
+			e.stopPropagation(); // 阻止冒泡，避免 document click 立即关闭
 			if (panel) {
 				toggleMenu(li);
 			}
 		});
 
-		// 允许使用键盘打开（Enter / Space）
+		// 键盘打开（提高可访问性）
 		btn.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter' || e.key === ' ') {
 				e.preventDefault();
@@ -57,21 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
-	// 点击外部关闭
+	// 点击页面空白处关闭所有下拉
 	document.addEventListener('click', (e) => {
 		if (!e.target.closest('.menu-button')) {
 			closeAll();
 		}
 	});
 
-	// Esc 关闭
+	// Esc 键关闭
 	document.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape' || e.key === 'Esc') {
 			closeAll();
 		}
 	});
 
-	// 初始化 aria 状态
+	// 页面初始化：确保 aria-* 状态一致
 	menuButtons.forEach(li => {
 		const btn = li.querySelector('.menu-button-f');
 		const panel = li.querySelector('.menu-botton-down-c');

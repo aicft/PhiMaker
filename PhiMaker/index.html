@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PhiMaker</title>
+    <title>PhiMaker 铺面编辑器</title>
     <!-- 关键词，用于SEO优化 -->
     <meta name="keywords" content="PhiMaker,phigros,phira,PM">
     <!-- 页面描述信息 -->
@@ -26,7 +26,6 @@
             <li class="menu-button">
                 <svg width="80" height="20" xmlns="http://www.w3.org/2000/svg">
                     <title>icon</title>
-
                     <g id="Layer_1">
                         <title>PhiMaker 铺面编辑器</title>
                         <text font-weight="bold" font-style="normal"
@@ -36,90 +35,72 @@
                     </g>
                 </svg>
             </li>
-            <!-- 文件菜单（含下拉子菜单），增加可访问性属性 -->
+
+            <!-- 菜单项：每个菜单都有唯一的 id 和对应的下拉 panel id -->
             <li class="menu-button">
-                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file"
-                    id="menu-file-button" type="button">文件(F)</button>
-                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
+                <button class="menu-button-f" id="menu-file-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" type="button">文件</button>
                 <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
-                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
-                    <button class="menu-button-c" type="button">新建</button>
+                    <button id="btn-new-project" class="menu-button-c" type="button">新建</button>
                     <button class="menu-button-c" type="button">打开工作文件</button>
                     <button class="menu-button-c" type="button">导入素材</button>
                     <button class="menu-button-c" type="button">导出</button>
                     <button class="menu-button-c" type="button">退出</button>
                 </div>
             </li>
-            <!-- 编辑菜单 -->
+
             <li class="menu-button">
-                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file"
-                    type="button">编辑(E)</button>
-                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
-                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
-                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
-                    <button class="menu-button-c" type="button">新建</button>
-                    <button class="menu-button-c" type="button">打开工作文件</button>
-                    <button class="menu-button-c" type="button">导入素材</button>
-                    <button class="menu-button-c" type="button">导出</button>
-                    <button class="menu-button-c" type="button">退出</button>
+                <button class="menu-button-f" id="menu-edit-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-edit" type="button">编辑</button>
+                <div class="menu-botton-down-c" id="menu-edit" role="menu" aria-hidden="true">
+                    <button class="menu-button-c" type="button">撤销</button>
+                    <button class="menu-button-c" type="button">重做</button>
                 </div>
             </li>
+
             <li class="menu-button">
-                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file"
-                    type="button">选择(S)</button>
-                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
-                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
-                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
-                    <button class="menu-button-c" type="button">新建</button>
-                    <button class="menu-button-c" type="button">打开工作文件</button>
-                    <button class="menu-button-c" type="button">导入素材</button>
-                    <button class="menu-button-c" type="button">导出</button>
-                    <button class="menu-button-c" type="button">退出</button>
+                <button class="menu-button-f" id="menu-select-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-select" type="button">选择</button>
+                <div class="menu-botton-down-c" id="menu-select" role="menu" aria-hidden="true">
+                    <button class="menu-button-c" type="button">全部</button>
+                    <button class="menu-button-c" type="button">反选</button>
                 </div>
             </li>
-            <!-- 查看菜单 -->
+
             <li class="menu-button">
-                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file"
-                    type="button">查看(V)</button>
-                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
-                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
-                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
-                    <button class="menu-button-c" type="button">新建</button>
-                    <button class="menu-button-c" type="button">打开工作文件</button>
-                    <button class="menu-button-c" type="button">导入素材</button>
-                    <button class="menu-button-c" type="button">导出</button>
-                    <button class="menu-button-c" type="button">退出</button>
+                <button class="menu-button-f" id="menu-view-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-view" type="button">查看</button>
+                <div class="menu-botton-down-c" id="menu-view" role="menu" aria-hidden="true">
+                    <button class="menu-button-c" type="button">放大</button>
+                    <button class="menu-button-c" type="button">缩小</button>
                 </div>
             </li>
-            <!-- 其他菜单 -->
+
             <li class="menu-button">
-                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file"
-                    type="button">其他(O)</button>
-                <!-- 下拉菜单：使用 role="menu" 提供容器语义，内部使用原生 button（方案 A 推荐） -->
-                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
-                    <!-- menu-button-c: 下拉内的操作按钮，保留原生语义以便屏幕阅读器友好 -->
-                    <button class="menu-button-c" type="button">新建</button>
-                    <button class="menu-button-c" type="button">打开工作文件</button>
-                    <button class="menu-button-c" type="button">导入素材</button>
-                    <button class="menu-button-c" type="button">导出</button>
-                    <button class="menu-button-c" type="button">退出</button>
+                <button class="menu-button-f" id="menu-other-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-other" type="button">其他</button>
+                <div class="menu-botton-down-c" id="menu-other" role="menu" aria-hidden="true">
+                    <button class="menu-button-c" type="button">设置</button>
+                    <button class="menu-button-c" type="button">关于</button>
                 </div>
             </li>
         </ul>
     </div>
-    </div>
-    <!-- 右侧菜单区域 -->
-    <div class="down rightmenu">
-        <!-- 右侧顶部菜单（可扩展） 
-            <div class="r-top-menu">
-                 预留区域 
-            </div>
-        -->
-        <!-- 右侧底部菜单（可扩展） -->
-        <div class="r-down-menu">
-            <!-- 预留区域 -->
+
+    <!-- 主内容与右侧菜单容器（使用 flex 布局） -->
+    <div class="content">
+        <!-- 主窗口区域，左侧主内容 -->
+        <div class="down mainwindow">
+            <!-- 主内容区：可放 iframe 或编辑画布 -->
+        </div>
+
+        <!-- 右侧菜单区域 -->
+        <div class="down rightmenu">
+            <div class="r-top-menu"></div>
+            <div class="r-down-menu"></div>
         </div>
     </div>
+    <!-- 模态层：用于在页面中央显示 create.html -->
+    <div id="create-modal" class="modal-backdrop hidden" role="dialog" aria-hidden="true" aria-label="新建项目">
+        <div class="modal-content" role="document">
+            <button id="create-modal-close" class="modal-close" aria-label="关闭">✕</button>
+            <iframe id="create-iframe" src="about:blank" title="Create New Project" frameborder="0"></iframe>
+        </div>
     </div>
 </body>
 

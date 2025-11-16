@@ -82,4 +82,58 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (btn) btn.setAttribute('aria-expanded', 'false');
 		if (panel) panel.setAttribute('aria-hidden', 'true');
 	});
+
+	// ----------------- 新建项目模态 iframe 功能 -----------------
+	const createBtn = document.getElementById('btn-new-project');
+	const modal = document.getElementById('create-modal');
+	const modalClose = document.getElementById('create-modal-close');
+	const modalIframe = document.getElementById('create-iframe');
+
+	function openCreateModal() {
+		if (!modal) return;
+		modal.classList.remove('hidden');
+		modal.setAttribute('aria-hidden', 'false');
+		// 懒加载 iframe 的内容，避免初始加载成本
+		if (modalIframe && (modalIframe.getAttribute('src') === 'about:blank' || !modalIframe.getAttribute('src'))) {
+			modalIframe.setAttribute('src', 'create.html');
+		}
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeCreateModal() {
+		if (!modal) return;
+		modal.classList.add('hidden');
+		modal.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = '';
+		// 可选：保留 src 以便下次快速打开，或者清空以释放内存
+		// modalIframe.setAttribute('src', 'about:blank');
+	}
+
+	if (createBtn) {
+		createBtn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			openCreateModal();
+		});
+	}
+
+	if (modalClose) modalClose.addEventListener('click', closeCreateModal);
+
+	// 点击遮罩（不是 modal-content）时关闭
+	if (modal) {
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) closeCreateModal();
+		});
+	}
+
+	// Esc 关闭模态（与上面的 Esc 共用）
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' || e.key === 'Esc') {
+			// 先尝试关闭模态，否则关闭下拉
+			if (modal && modal.getAttribute('aria-hidden') === 'false') {
+				closeCreateModal();
+			} else {
+				closeAll();
+			}
+		}
+	});
 });

@@ -1,16 +1,16 @@
 :root{
-    --main-c:#6865e6;
-    --sub-c:#2420c5;
-    --imp-c:#14126d;
-    --main-t-c:#bebdf4;
-    --sub-t-c:#d4d3f8;
-    --imp-t-c:#14126d;
+    /* 颜色变量：深色背景 + 紫色强调 */
+    --bg-color: #0b0f1a;    /* 页面主背景 */
+    --main-c: #2d1b4a;      /* 顶部条背景（深紫） */
+    --accent: #986cff;      /* 强调色 */
+    --text: #e6e9ff;        /* 主文字色 */
+    --muted: #bfbff3;       /* 次要文字 */
 }
 
 
 body {
-    background-color:var(--main-c);
-    color: var(--main-t-c);
+    background-color: var(--bg-color);
+    color: var(--text);
     font-family: "微软雅黑", Arial, "Microsoft Yahei", sans-serif;
     margin: 0px;
 }
@@ -46,25 +46,21 @@ ul {
     padding: 0 4px;
 }
 .menu-button-f:focus {
-    background-color: #6699CC;
+    outline: 2px solid rgba(152,108,255,0.35);
 }
 .menu-button-f {
-    background-color: var(--main-c);
+    background: transparent; /* 透明按钮，靠 hover/active 提示 */
     border-radius: 4px;
     border: none;
-    color:var(--main-t-c);
+    color: var(--text);
     justify-content: flex-start;
     align-items: center;
-    padding: 4px;
+    padding: 6px 8px;
     margin: 2px;
 }
 
-.menu-button-f:focus {
-    background-color: #6699CC
-}
-
 .menu-button-f:hover {
-    background-color: #6699CC;
+    background: rgba(255,255,255,0.03);
 }
 .icon {
     width: 30px;
@@ -96,6 +92,7 @@ ul {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+    z-index: 100;
 }
 
 /* 基于类或悬停显示下拉（JS 会添加 .open） */

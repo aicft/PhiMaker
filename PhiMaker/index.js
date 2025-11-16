@@ -1,17 +1,16 @@
 console.clear();
 console.log("index.js loaded");
 
-// 下拉菜单交互：点击切换、点击外部关闭、Esc 关闭
-(function () {
+// Ensure DOM is ready before binding menu handlers — fixes issue where script loaded in <head>
+document.addEventListener('DOMContentLoaded', () => {
+	// 下拉菜单交互：点击切换、点击外部关闭、Esc 关闭
 	const menuButtons = Array.from(document.querySelectorAll('.menu-button'));
 
 	function closeAll() {
 		menuButtons.forEach(li => {
 			const btn = li.querySelector('.menu-button-f');
 			const panel = li.querySelector('.menu-botton-down-c');
-			if (li.classList.contains('open')) {
-				li.classList.remove('open');
-			}
+			li.classList.remove('open');
 			if (btn) btn.setAttribute('aria-expanded', 'false');
 			if (panel) panel.setAttribute('aria-hidden', 'true');
 		});
@@ -36,7 +35,7 @@ console.log("index.js loaded");
 		});
 	}
 
-	// 绑定按钮点击
+	// 绑定按钮点击与键盘
 	menuButtons.forEach(li => {
 		const btn = li.querySelector('.menu-button-f');
 		const panel = li.querySelector('.menu-botton-down-c');
@@ -60,7 +59,6 @@ console.log("index.js loaded");
 
 	// 点击外部关闭
 	document.addEventListener('click', (e) => {
-		// 如果点击的不是任何一个下拉面板或触发按钮，则关闭所有
 		if (!e.target.closest('.menu-button')) {
 			closeAll();
 		}
@@ -73,13 +71,11 @@ console.log("index.js loaded");
 		}
 	});
 
-	// 当页面加载时，确保 aria 状态同步
-	window.addEventListener('load', () => {
-		menuButtons.forEach(li => {
-			const btn = li.querySelector('.menu-button-f');
-			const panel = li.querySelector('.menu-botton-down-c');
-			if (btn) btn.setAttribute('aria-expanded', 'false');
-			if (panel) panel.setAttribute('aria-hidden', 'true');
-		});
+	// 初始化 aria 状态
+	menuButtons.forEach(li => {
+		const btn = li.querySelector('.menu-button-f');
+		const panel = li.querySelector('.menu-botton-down-c');
+		if (btn) btn.setAttribute('aria-expanded', 'false');
+		if (panel) panel.setAttribute('aria-hidden', 'true');
 	});
-})();
+});

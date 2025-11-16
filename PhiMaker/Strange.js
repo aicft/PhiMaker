@@ -1,1 +1,1 @@
-console.clear()
+console.log("Strange.js loaded")

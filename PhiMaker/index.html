@@ -5,51 +5,81 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PhiMaker</title>
+    <!-- 关键词，用于SEO优化 -->
     <meta name="keywords" content="PhiMaker,phigros,phira,PM">
+    <!-- 页面描述信息 -->
     <meta name="description" content="phira自制谱制作">
+    <!-- 作者信息 -->
     <meta name="author" content="Akua">
+    <!-- 引入样式表 -->
     <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- 引入主JS脚本 -->
     <script src="index.js"></script>
+    <script src="Strange.js"></script>
 </head>
 
 <body>
+    <!-- 顶部菜单栏 -->
     <div class="topmenu">
         <ul class="top-menu">
-          <li class="menu-button"><img class="icon" src="icon.png" alt="Phimaker"></li>
-           <li class="menu-button">
-            <button class="menu-button-f">文件(F)</button>
-            <div class="menu-botton-down-c">
-                <button class="menu-button-c">新建</button>
-                <button class="menu-button-c">打开工作文件</button>
-                <button class="menu-button-c">导入素材</button>
-                <button class="menu-button-c">导出</button>
-                <a></a>
-                <button class="menu-button-c">退出</button>
-            </div>
-           </li>
-           <li class="menu-button">
-            <button class="menu-button-f">编辑(E)</button>
-           </li>
-         <li class="menu-button">
-            <button class="menu-button-f">选择(S)</button>
+            <!-- Logo 区域 -->
+            <li class="menu-button">
+                <svg width="80" height="20" xmlns="http://www.w3.org/2000/svg">
+                    <title>icon</title>
+
+                    <g id="Layer_1">
+                        <title>PhiMaker 铺面编辑器</title>
+                        <text font-weight="bold" font-style="normal"
+                            transform="matrix(0.598203 0 0 0.609931 0.759088 3.41791)" xml:space="preserve"
+                            text-anchor="start" font-family="'Oxanium'" font-size="24" id="svg_1" y="20.40812"
+                            x="4.16206" stroke-width="0" stroke="#000" fill="#ffffff">PhiMaker</text>
+                    </g>
+                </svg>
             </li>
+            <!-- 文件菜单（含下拉子菜单），增加可访问性属性 -->
+            <li class="menu-button">
+                <button class="menu-button-f" aria-haspopup="true" aria-expanded="false" aria-controls="menu-file" id="menu-file-button" type="button">文件(F)</button>
+                <!-- 下拉菜单：使用 role="menu" 和 role="menuitem" 提供更好无障碍支持 -->
+                <div class="menu-botton-down-c" id="menu-file" role="menu" aria-hidden="true">
+                    <button class="menu-button-c" role="menuitem" type="button">新建</button>
+                    <button class="menu-button-c" role="menuitem" type="button">打开工作文件</button>
+                    <button class="menu-button-c" role="menuitem" type="button">导入素材</button>
+                    <button class="menu-button-c" role="menuitem" type="button">导出</button>
+                    <button class="menu-button-c" role="menuitem" type="button">退出</button>
+                </div>
+            </li>
+            <!-- 编辑菜单 -->
+            <li class="menu-button">
+                <button class="menu-button-f">编辑(E)</button>
+            </li>
+            <!-- 选择菜单 -->
+            <li class="menu-button">
+                <button class="menu-button-f">选择(S)</button>
+            </li>
+            <!-- 查看菜单 -->
             <li class="menu-button">
                 <button class="menu-button-f">查看(V)</button>
             </li>
+            <!-- 其他菜单 -->
             <li class="menu-button">
                 <button class="menu-button-f">其他(O)</button>
             </li>
-        </ui>
+        </ul>
     </div>
+    <!-- 主窗口区域，左侧主内容 -->
     <div class="down mainwindow">
+        <!-- 主内容iframe，可用于加载主页面内容 -->
         <iframe title="Main content"></iframe>
     </div>
+    <!-- 右侧菜单区域 -->
     <div class="down rightmenu">
+        <!-- 右侧顶部菜单（可扩展） -->
         <div class="r-top-menu">
-            
+            <!-- 预留区域 -->
         </div>
+        <!-- 右侧底部菜单（可扩展） -->
         <div class="r-down-menu">
-            
+            <!-- 预留区域 -->
         </div>
     </div>
 </body>

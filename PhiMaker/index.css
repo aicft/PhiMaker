@@ -1,74 +1,145 @@
-:root {
-    --bg-color: rgb(32, 23, 54);
-    --text-color: #e6e9ff;
-    --accent-color: #986cff;
-    --top-menu-color: rgb(10, 10, 10)
+:root{
+    --main-c:#6865e6;
+    --sub-c:#2420c5;
+    --imp-c:#14126d;
+    --main-t-c:#bebdf4;
+    --sub-t-c:#d4d3f8;
+    --imp-t-c:#14126d;
 }
 
+
 body {
-    background-color: var(--bg-color);
-    /* 使用变量 */
-    color: var(--text-color);
+    background-color:var(--main-c);
+    color: var(--main-t-c);
     font-family: "微软雅黑", Arial, "Microsoft Yahei", sans-serif;
     margin: 0px;
 }
-/*-------------topmenu------------------*/
-ul,li{
+
+/*-------------top menu------------------*/
+/* 将 ul 作为水平容器，li 不再被同时设为 flex（避免意外影响子元素） */
+ul {
     display: flex;
     margin: 0px;
     padding: 0px;
     align-items: center;
 }
-.top-menu{
-    background-color: rgb(3, 26, 46);
-    box-shadow: 0px 0px 7px rgba(0,0,0,0.25);
+
+.top-menu {
+    background-color: var(--main-c);
+    box-shadow: 0px 0px 7px rgba(97, 97, 97, 0.452);
+    z-index: 1000000;
 }
+
 .menu-button {
-    background-color: rgb(18, 21, 59);
-    border-radius: 4px;
-    /*border: none;
-    all: unset;.menu-button-f:focus{
-    background-color:black
-}*/
-    list-style: none;
-}
-.menu-button-f{
-    background-color: rgb(18, 21, 59);
+    /* 将 li（.menu-button）作为弹性容器，方便子元素垂直居中 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中（主轴方向居中） */
+    position: relative; /* 为下拉面板提供包含块（定位上下文） */
+    /*background-color: #99CCFF;*/
     border-radius: 4px;
     border: none;
-    color: #e6e9ff;
+    all: unset;
+    list-style: none;
+    /* 取消不必要的 max-width，避免子元素被截断 */
+    max-width: none;
+    padding: 0 4px;
+}
+.menu-button-f:focus {
+    background-color: #6699CC;
+}
+.menu-button-f {
+    background-color: var(--main-c);
+    border-radius: 4px;
+    border: none;
+    color:var(--main-t-c);
     justify-content: flex-start;
-    align-items:center;
+    align-items: center;
     padding: 4px;
     margin: 2px;
 }
-.menu-button-f:focus{
-    background-color:black
+
+.menu-button-f:focus {
+    background-color: #6699CC
 }
-.menu-button-f:hover{
-    background-color:rgb(73, 61, 61)
+
+.menu-button-f:hover {
+    background-color: #6699CC;
 }
 .icon {
-    width:30px;
+    width: 30px;
     height: 30px;
     padding: 1px;
     border-radius: 20px;
 }
-.menu-botton-down-c{
-    display: none;
-}
-/*----------------down right menu------------------*/
 
-.rightmenu{
-    background-color: aqua;
+.menu-botton-down-c {
+    /* 下拉面板：默认隐藏（不可见、不可交互），使用透明度/变换过渡以获得动画 */
+    display: flex;             /* 保持 flex 布局，配合 opacity/visibility 控制显示 */
+    position: absolute;        /* 绝对定位显示为下拉面板 */
+    top: calc(100% + 6px);     /* 位于菜单按钮下方（留 6px 间隙） */
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px); /* 初始上移，便于过渡动画 */
+    min-width: 140px;          /* 保持合理宽度 */
+    flex-direction: column;    /* 垂直堆叠下拉项 */
+    align-items: center;       /* 水平居中 */
+    justify-content: center;   /* 垂直居中（如果容器有高度） */
+    gap: 6px;                  /* 下拉项之间的间距 */
+    padding: 6px 8px;          /* 内边距，避免靠边 */
+    box-sizing: border-box;
+    background-color: rgba(8, 8, 12, 0.96); /* 半透明暗色背景，和主题协调 */
+    color: var(--main-t-c);
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+}
+
+/* 基于类或悬停显示下拉（JS 会添加 .open） */
+.menu-button.open .menu-botton-down-c,
+.menu-button:hover .menu-botton-down-c,
+.menu-button:focus-within .menu-botton-down-c {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 下拉内按钮样式（可覆盖默认 button） */
+.menu-botton-down-c .menu-button-c {
+    background: transparent;
+    color: var(--main-t-c);
+    border: none;
+    padding: 6px 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.menu-botton-down-c .menu-button-c:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/*
+    右侧菜单与主窗口区域样式
+    控制右侧菜单和主内容区的布局与外观
+*/
+
+.rightmenu {
+    background-color: rgb(30, 20, 32);
     width: 20%;
 }
-.down{
-    float:left
 
+.down {
+    float: left;
 }
-.mainwindow{
-    background-color:black;
-    width:80%;
+
+.mainwindow {
+    background-color: #6699CC;
+    width: 80%;
     height: 94.6vh;
 }

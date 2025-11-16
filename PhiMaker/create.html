@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Project - PhiMaker</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 自定义滚动条样式：iframe 内页面使用（跨浏览器规则） */
+        /* Firefox 支持 */
+        html, body, div, textarea, pre {
+            scrollbar-width: thin; /* auto | thin | none */
+            scrollbar-color: #7a4cff rgba(255,255,255,0.02);
+        }
+        /* Webkit 浏览器（Chrome/Edge/Safari） */
+        html::-webkit-scrollbar, body::-webkit-scrollbar, div::-webkit-scrollbar, textarea::-webkit-scrollbar, pre::-webkit-scrollbar { width: 10px; height: 10px; }
+        html::-webkit-scrollbar-track, body::-webkit-scrollbar-track, div::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track, pre::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 8px; }
+        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7a4cff, #5b3bff); border-radius: 8px; box-shadow: inset 0 0 4px rgba(0,0,0,0.3); }
+        /* 备用：确保颜色属性也设置在 body 上以兼容部分浏览器 */
+        body { scrollbar-color: #7a4cff rgba(255,255,255,0.02); }
+        /* 让表单与右侧上传栏并列 */
+        .create { display: flex; gap: 18px; align-items: flex-start; }
+        .create form { flex: 1 1 auto; }
+        .create .side-panel { flex: 0 0 260px; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); }
+        .file-input-row { display:flex; flex-direction:column; gap:10px; }
+        .file-input-row label { font-size:14px; }
+        /* 为 range 增强可见度：更粗轨道、更大拇指 */
+        .number-range-row input[type=range] { height: 10px; }
+        .number-range-row input[type=range]::-webkit-slider-thumb { width: 22px; height: 22px; }
+        .number-range-row input[type=range]::-moz-range-thumb { width: 22px; height: 22px; }
+    </style>
 </head>
 
 <body>
@@ -24,10 +48,10 @@
             <label for="project-difficulty-number">难度 (数值):</label>
             <div class="number-range-row">
                 <!-- 数字框（可直接输入精确数值） -->
-                <input type="number" id="project-difficulty-number" name="project-difficulty" min="0" max="20" value="8"
+                <input type="number" step="0.1" id="project-difficulty-number" name="project-difficulty" min="0" max="20" value="8"
                     title="请输入铺面难度（数字，0-20）" placeholder="0-20" aria-label="铺面难度数字">
                 <!-- 滑条：用于快速调整难度 -->
-                <input type="range" id="project-difficulty-range" min="0" max="20" value="8" aria-label="铺面难度滑条">
+                <input type="range" step="0.1" id="project-difficulty-range" min="0" max="20" value="8" aria-label="铺面难度滑条">
             </div>
 
             <!-- 难度等级（文本） -->
@@ -54,42 +78,101 @@
             <!-- 提交按钮：右对齐（由 CSS 控制） -->
             <button type="submit" id="create-submit">Create Project</button>
         </form>
+        
+        <!-- 右侧上传面板（音乐与图片） -->
+        <aside class="side-panel" aria-label="上传素材">
+            <h3>上传素材</h3>
+            <div class="file-input-row">
+                <div>
+                    <label for="map-music">铺面音乐（必选，mp3/ogg）</label>
+                    <input type="file" id="map-music" name="map-music" accept="audio/*">
+                </div>
+                <div>
+                    <label for="map-image">铺面图片（必选，png/jpg）</label>
+                    <input type="file" id="map-image" name="map-image" accept="image/*">
+                </div>
+            </div>
+        </aside>
     </div>
     
     <!-- 页面脚本：同步滑条与数字，并处理表单提交 -->
     <script>
-        // 表单提交处理（目前保留弹窗提醒行为）
+        // 表单提交：读取文本字段与可选的文件（图片/音频），通过 postMessage 发送给父窗口
         document.getElementById('create-project-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const projectName = document.getElementById('project-name').value;
-            const difficulty = document.getElementById('project-difficulty-number').value;
-            const difficultyLevel = document.getElementById('project-diffculty-level').value;
-            const author = document.getElementById('project-author').value;
-            // 目前仅展示信息，后续可以 postMessage 到父窗口或保存到后端
-            alert(`Creating project: ${projectName}\n难度: ${difficulty} (${difficultyLevel})\n作者: ${author}`);
+
+            const getVal = id => document.getElementById(id) ? document.getElementById(id).value : '';
+            const payload = {
+                name: getVal('project-name'),
+                difficulty: parseFloat(getVal('project-difficulty-number')) || 0,
+                difficultyLevel: getVal('project-diffculty-level'),
+                author: getVal('project-author'),
+                musicAuthor: getVal('project-music-author'),
+                pictureAuthor: getVal('project-picture-author'),
+                tip: getVal('project-tip'),
+                files: {}
+            };
+
+            // helper: 读取 file input 为 dataURL（如果有文件）
+            function readFileData(fileInputId) {
+                return new Promise((resolve) => {
+                    const inp = document.getElementById(fileInputId);
+                    if (!inp || !inp.files || inp.files.length === 0) return resolve(null);
+                    const file = inp.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function(e) { resolve({ name: file.name, type: file.type, dataURL: e.target.result }); };
+                    reader.onerror = function() { resolve(null); };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            Promise.all([readFileData('map-music'), readFileData('map-image')]).then(([music, image]) => {
+                if (music) payload.files.music = music;
+                if (image) payload.files.image = image;
+
+                // 发送消息给父窗口（父页面负责校验 origin/权限）
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'create-project', payload }, '*');
+                    // 可视反馈：替代 alert
+                    const status = document.createElement('div');
+                    status.textContent = '已发送新建请求';
+                    status.style.color = '#bfcfff';
+                    document.body.appendChild(status);
+                } else {
+                    alert('无法找到父窗口，新的项目数据:\n' + JSON.stringify(payload, null, 2));
+                }
+            });
         });
 
-        // 同步逻辑：数字输入与滑条互相同步
+        // 同步逻辑：数字输入与滑条互相同步（支持浮点 step）
         (function(){
             const numInput = document.getElementById('project-difficulty-number');
             const rangeInput = document.getElementById('project-difficulty-range');
             if (!numInput || !rangeInput) return;
 
+            // helper: clamp
+            function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
+
             // 滑条变化 -> 更新数字框
             rangeInput.addEventListener('input', function(e){
-                numInput.value = e.target.value;
+                // 保持小数位（依据 step）
+                const step = parseFloat(rangeInput.step) || 1;
+                const v = parseFloat(e.target.value);
+                numInput.value = (Math.round(v / step) * step).toFixed((step.toString().split('.')[1] || '').length);
             });
 
             // 数字框变化 -> 更新滑条（并约束在范围内）
             numInput.addEventListener('input', function(e){
-                let v = parseInt(e.target.value, 10);
+                let v = parseFloat(e.target.value);
                 if (isNaN(v)) v = 0;
-                const min = parseInt(rangeInput.min, 10) || 0;
-                const max = parseInt(rangeInput.max, 10) || 100;
-                if (v < min) v = min;
-                if (v > max) v = max;
+                const min = parseFloat(rangeInput.min) || 0;
+                const max = parseFloat(rangeInput.max) || 100;
+                const step = parseFloat(rangeInput.step) || 1;
+                v = clamp(v, min, max);
+                // 规范小数位
+                const decimals = (step.toString().split('.')[1] || '').length;
                 rangeInput.value = v;
-                e.target.value = v;
+                e.target.value = v.toFixed(decimals);
             });
         })();
     </script>

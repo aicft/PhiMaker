@@ -136,4 +136,29 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 	});
+
+	// 接收来自 iframe 的新建项目消息（通过 postMessage）
+	window.addEventListener('message', (ev) => {
+		if (!ev || !ev.data) return;
+		const msg = ev.data;
+		if (msg.type === 'create-project') {
+			const data = msg.payload || {};
+			// 简单校验
+			if (!data.name) {
+				console.warn('收到创建请求但缺少 name', data);
+				return;
+			}
+			console.log('收到新建项目请求：', data.name, data);
+			// 关闭模态
+			if (typeof closeCreateModal === 'function') closeCreateModal();
+		}
+	});
+
+	// 简单逃逸函数，用于插入到 DOM（避免 XSS）
+	function escapeHtml(s) {
+		if (!s) return '';
+		return String(s).replace(/[&<>"]/g, function(c){
+			return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+		});
+	}
 });

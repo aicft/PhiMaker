@@ -1,0 +1,80 @@
+/* 自定义滚动条样式：iframe 内页面使用（跨浏览器规则） */
+/* Firefox 支持 */
+@supports (scrollbar-color: #7a4cff rgba(255, 255, 255, 0.02)) {
+
+    html,
+    body,
+    div,
+    textarea,
+    pre {
+        scrollbar-width: thin;
+        /* auto | thin | none */
+        scrollbar-color: #7a4cff rgba(255, 255, 255, 0.02);
+    }
+}
+
+/* Webkit 浏览器（Chrome/Edge/Safari） */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+div::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+pre::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* 备用：确保颜色属性也设置在 body 上以兼容部分浏览器 */
+@supports (scrollbar-color: #7a4cff rgba(255, 255, 255, 0.02)) {
+    body {
+        scrollbar-color: #7a4cff rgba(255, 255, 255, 0.02);
+    }
+}
+
+/* 备用：确保颜色属性也设置在 body 上以兼容部分浏览器 */
+body {
+    scrollbar-color: #7a4cff rgba(255, 255, 255, 0.02);
+}
+
+/* 让表单与右侧上传栏并列 */
+.create {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.create form {
+    flex: 1 1 auto;
+}
+
+.create .side-panel {
+    flex: 0 0 260px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.file-input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.file-input-row label {
+    font-size: 14px;
+}
+
+/* 为 range 增强可见度：更粗轨道、更大拇指 */
+.number-range-row input[type=range] {
+    height: 10px;
+}
+
+.number-range-row input[type=range]::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+}
+
+.number-range-row input[type=range]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+}
